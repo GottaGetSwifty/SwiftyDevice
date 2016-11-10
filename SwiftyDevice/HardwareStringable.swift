@@ -6,7 +6,7 @@
 //  Copyright © 2016 PeeJWeeJ. All rights reserved.
 //
 // I've tried a few different ways of organizing the parsing of the device HWString and this is what I settled on.
-// Although i
+// Although the long switches can get a tad ugly, it seems to be the best way to keep things organized and maintainable.
 //
 // This file includes extensions for all the Device enums from DeviceLine that adhere to HardwareStringable
 // The general behavior is the types will be passed a hwString and return the related device, or .unknown
@@ -18,10 +18,47 @@ protocol HardwareStringable: Equatable {
 	static func makeOrNil(from hwString: String) -> Self?
 }
 
+extension DeviceLine: HardwareStringable {
+
+	static func make(from hwString: String) -> DeviceLine {
+
+		if hwString.contains("86") {
+			return .simulator
+		}
+		else if hwString.contains("iPhone") {
+			return .iPhone(IPhone.make(from: hwString))
+		}
+		else if hwString.contains("iPad") {
+			return .iPad(IPad.make(from: hwString))
+		}
+		else if hwString.contains("iPod") {
+			return .iPod(IPod.make(from: hwString))
+		}
+		else if hwString.contains("Watch") {
+			return .watch(Watch.make(from: hwString))
+		}
+		else if hwString.contains("Apple TV") {
+			return .appleTV(AppleTV.make(from: hwString))
+		}
+		else if hwString.contains("Simulator") {
+			return .simulator
+		}
+		else {
+			return .unknown
+		}
+	}
+
+	static func makeOrNil(from hwString: String) -> DeviceLine? {
+		let result = make(from: hwString)
+		return (result == DeviceLine.unknown) ? nil : result
+	}
+}
+
 extension DeviceLine.IPhone: HardwareStringable {
 
 	static func make(from hwString: String) -> DeviceLine.IPhone {
 
+		// Cases double spaced for readibility since there is a large number of cases
 		switch hwString {
 		case "iPhone1,1":
 			return .iPhone1
@@ -67,6 +104,7 @@ extension DeviceLine.IPhone: HardwareStringable {
 
 		case "iPhone9,2", "iPhone9,4":
 			return .iPhone7Plus
+
 		default:
 			return .unknown
 		}
@@ -80,6 +118,7 @@ extension DeviceLine.IPhone: HardwareStringable {
 
 extension DeviceLine.IPad: HardwareStringable {
 
+	// Cases double spaced for readibility since there is a large number of cases and a lot of multi-value cases
 	static func make(from hwString: String) -> DeviceLine.IPad {
 
 		switch hwString {
@@ -207,42 +246,6 @@ extension DeviceLine.AppleTV: HardwareStringable {
 	static func makeOrNil(from hwString: String) -> DeviceLine.AppleTV? {
 		let result = make(from: hwString)
 		return result == .unknown ? nil : result
-	}
-}
-
-extension DeviceLine: HardwareStringable {
-
-	static func make(from hwString: String) -> DeviceLine {
-
-		if hwString.contains("86") {
-			return .simulator
-		}
-		else if hwString.contains("iPhone") {
-			return .iPhone(IPhone.make(from: hwString))
-		}
-		else if hwString.contains("iPad") {
-			return .iPad(IPad.make(from: hwString))
-		}
-		else if hwString.contains("iPod") {
-			return .iPod(IPod.make(from: hwString))
-		}
-		else if hwString.contains("Watch") {
-			return .watch(Watch.make(from: hwString))
-		}
-		else if hwString.contains("Apple TV") {
-			return .appleTV(AppleTV.make(from: hwString))
-		}
-		else if hwString.contains("Simulator") {
-			return .simulator
-		}
-		else {
-			return .unknown
-		}
-	}
-
-	static func makeOrNil(from hwString: String) -> DeviceLine? {
-		let result = make(from: hwString)
-		return (result == DeviceLine.unknown) ? nil : result
 	}
 }
 
