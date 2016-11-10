@@ -15,7 +15,6 @@
 		9212BF471D89B28900A9E94A /* SwiftyDeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9212BF461D89B28900A9E94A /* SwiftyDeviceTests.swift */; };
 		9212BF521D89B28900A9E94A /* SwiftyDeviceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9212BF511D89B28900A9E94A /* SwiftyDeviceUITests.swift */; };
 		9212BF611D89B2B800A9E94A /* UIDevice+Hardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9212BF601D89B2B800A9E94A /* UIDevice+Hardware.swift */; };
-		9212BF651D89DF0200A9E94A /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 9212BF641D89DF0200A9E94A /* UIDevice+Hardware.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,8 +50,6 @@
 		9212BF531D89B28900A9E94A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9212BF601D89B2B800A9E94A /* UIDevice+Hardware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Hardware.swift"; sourceTree = "<group>"; };
 		9212BF621D89DF0100A9E94A /* SwiftyDevice-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftyDevice-Bridging-Header.h"; sourceTree = "<group>"; };
-		9212BF631D89DF0200A9E94A /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
-		9212BF641D89DF0200A9E94A /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,8 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				9212BF601D89B2B800A9E94A /* UIDevice+Hardware.swift */,
-				9212BF631D89DF0200A9E94A /* UIDevice+Hardware.h */,
-				9212BF641D89DF0200A9E94A /* UIDevice+Hardware.m */,
 				9212BF621D89DF0100A9E94A /* SwiftyDevice-Bridging-Header.h */,
 			);
 			name = UIDevice;
@@ -211,7 +206,7 @@
 				TargetAttributes = {
 					9212BF2D1D89B28900A9E94A = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 94XNHP29JN;
+						DevelopmentTeam = U7L4DVX4HA;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -282,7 +277,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9212BF341D89B28900A9E94A /* ViewController.swift in Sources */,
-				9212BF651D89DF0200A9E94A /* UIDevice+Hardware.m in Sources */,
 				9212BF321D89B28900A9E94A /* AppDelegate.swift in Sources */,
 				9212BF611D89B2B800A9E94A /* UIDevice+Hardware.swift in Sources */,
 			);
@@ -437,7 +431,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 94XNHP29JN;
+				DEVELOPMENT_TEAM = U7L4DVX4HA;
 				INFOPLIST_FILE = SwiftyDevice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PeeJWeeJ.app.SwiftyDevice;
@@ -453,7 +447,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 94XNHP29JN;
+				DEVELOPMENT_TEAM = U7L4DVX4HA;
 				INFOPLIST_FILE = SwiftyDevice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PeeJWeeJ.app.SwiftyDevice;

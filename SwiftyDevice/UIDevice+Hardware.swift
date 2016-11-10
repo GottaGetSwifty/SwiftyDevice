@@ -9,9 +9,15 @@
 import UIKit
 import SystemConfiguration
 
+/******************************************
+ * The way this works is the enum DeviceLine's cases are each device family, (iPhone, iPad, etc.)
+ * Each case has an associated value for the specific line in the family. (iPhone 5, iphone 6, etc.)
+ * All these enums can create themselves based on a hardware string
+ ******************************************/
+
 enum IPhone: String {
 
-	case unknown = "Unknown"
+	case unknown = "Unknown iPhone"
 	case iPhone1 = "iPhone 1G"
 	case iPhone3G = "iPhone 3G"
 	case iPhone3GS = "iPhone 3Gs"
@@ -70,10 +76,10 @@ enum IPhone: String {
 		case "iPhone8,4":
 			return .iPhoneSE
 
-		case "iPhone9,1":
+		case "iPhone9,1", "iPhone9,3":
 			return .iPhone7
 
-		case "iPhone9,2":
+		case "iPhone9,2", "iPhone9,4":
 			return .iPhone7Plus
 		default:
 			return .unknown
@@ -83,7 +89,7 @@ enum IPhone: String {
 
 enum IPad: String {
 
-	case unknown
+	case unknown = "Unknown iPad"
 	case iPad1 = "iPad 1"
 	case iPad2 = "iPad 2"
 	case iPadMini1 = "iPad-Mini 1"
@@ -144,7 +150,7 @@ enum IPad: String {
 }
 
 enum IPod: String {
-	case unknown
+	case unknown = "Unknown iPod"
 	case iPod1 = "iPod 1G"
 	case iPod2 = "iPod 2G"
 	case iPod3 = "iPod 3G"
@@ -175,17 +181,29 @@ enum IPod: String {
 }
 
 enum Watch: String {
-	case unknown
-	case watch138 = "Apple Watch 1-38mm"
-	case watch142 = "Apple Watch 1-42mm"
-
+	case unknown = "Unknown Apple Watch"
+	case watch038 = "Apple Watch Series 0-38mm"
+	case watch042 = "Apple Watch Series 0-42mm"
+	case watch138 = "Apple Watch Series 1-38mm"
+	case watch142 = "Apple Watch Series 1-42mm"
+	case watch238 = "Apple Watch Series 2-38mm"
+	case watch242 = "Apple Watch Series 12-42mm"
 
 	static func deviceForHWString(hwString: String) -> Watch {
 		switch hwString {
 		case "Watch1,1":
-			return .watch138
+			return .watch038
 		case "Watch1,2":
+			return .watch042
+		case "Watch2,3":
+			return .watch238
+		case "Watch2,4":
+			return .watch242
+		case "Watch2,6":
+			return .watch138
+		case "Watch2,7":
 			return .watch142
+
 		default:
 			return .unknown
 		}
@@ -324,27 +342,27 @@ extension UIDevice {
 	}
 
 	static var machineInfoName: String {
-		return getSysInfo(byName: "hw.machine")
+		return hardwareString()
 	}
 
 	static var cpuFrequency: Int {
-		return Int(getSysInfo(uint(HW_CPU_FREQ)))
+		return systemInfo(for: HW_CPU_FREQ)
 	}
 
 	static var busFrequency: Int {
-		return Int(getSysInfo(uint(HW_BUS_FREQ)))
+		return systemInfo(for: HW_BUS_FREQ)
 	}
 
 	static var totalMemory: Int {
-		return Int(getSysInfo(uint(HW_MEMSIZE)))
+		return systemInfo(for: HW_MEMSIZE)
 	}
 
 	static var userMemory: Int {
-		return Int(getSysInfo(uint(HW_USERMEM)))
+		return systemInfo(for: HW_USERMEM)
 	}
 
 	static var maxSocketBufferSize: Int {
-		return Int(getSysInfo(uint(KIPC_MAXSOCKBUF)))
+		return systemInfo(for: KIPC_MAXSOCKBUF)
 	}
 
 	static var totalDiskSpace: Float? {
@@ -359,6 +377,27 @@ extension UIDevice {
 			return nil
 		}
 		return attributes[FileAttributeKey.systemFreeSize] as? Float
+	}
+
+	static func hardwareString() -> String {
+		var name: [Int32] = [CTL_HW, HW_MACHINE]
+		var size: Int = 2
+		sysctl(&name, 2, nil, &size, &name, 0)
+		var hw_machine = [CChar](repeating: 0, count: Int(size))
+		sysctl(&name, 2, &hw_machine, &size, &name, 0)
+
+		let hardware: String = String(validatingUTF8: hw_machine)!
+		return hardware
+	}
+
+	static func systemInfo(for key: Int32) -> Int {
+		var name: [Int32] = [CTL_HW, key]
+		var size: Int = 2
+		sysctl(&name, 2, nil, &size, &name, 0)
+		var value = [Int](repeating: 0, count: Int(size))
+		sysctl(&name, 2, &value, &size, &name, 0)
+
+		return value[0]
 	}
 }
 
