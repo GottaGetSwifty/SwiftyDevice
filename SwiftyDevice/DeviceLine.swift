@@ -23,7 +23,7 @@
 /// - watch:: enum for iPhone line
 /// - appleTV:: enum for iPhone line
 /// - unknown: No valid device was found
-enum DeviceLine: Equatable {
+enum DeviceLine {
 
 	case unknown
 	case iPhone(IPhone)
@@ -33,6 +33,8 @@ enum DeviceLine: Equatable {
 	case appleTV(AppleTV)
 	case simulator
 
+
+	//MARK: Formatting helpers
 
 	/// Pretty text with the simple line name, e.g. iPhone or iPad
 	var lineName: String {
@@ -54,7 +56,7 @@ enum DeviceLine: Equatable {
 		}
 	}
 
-	/// Pretty text with the device name from it's type, e.g. iPhone 6+ or Apple Watch Series 1-42mm
+	/// Pretty text with the device name from the device Type, e.g. iPhone 6+ or Apple Watch Series 1-42mm
 	var deviceName: String {
 		switch self {
 		case .unknown:
@@ -75,6 +77,8 @@ enum DeviceLine: Equatable {
 	}
 
 
+	//MARK: Comparison
+
 	/// Convenience method to compare the basic enum values without comparing their stored types
 	///
 	/// - Parameter otherEnum: enum to compare with own instance
@@ -91,25 +95,7 @@ enum DeviceLine: Equatable {
 		}
 	}
 
-	static func ==(leftItem: DeviceLine, rightItem: DeviceLine) -> Bool {
-		switch (leftItem, rightItem) {
-		case (.unknown, .unknown), (.simulator, simulator):
-			return true
-		case (.iPhone(let left), iPhone(let right)):
-			return left == right
-		case (.iPad(let left), iPad(let right)):
-			return left == right
-		case (.iPod(let left), iPod(let right)):
-			return left == right
-		case (.watch(let left), watch(let right)):
-			return left == right
-		case (.appleTV(let left), appleTV(let right)):
-			return left == right
-		default:
-			return false
-		}
-	}
-
+	//MARK: - SubTypes
 
 	/// Should contain all basic models of iPhones
 	enum IPhone: String {

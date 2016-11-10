@@ -239,6 +239,27 @@ extension DeviceLine: HardwareStringable {
 	}
 }
 
+extension DeviceLine: Equatable {
+	static func ==(leftItem: DeviceLine, rightItem: DeviceLine) -> Bool {
+		switch (leftItem, rightItem) {
+		case (.unknown, .unknown), (.simulator, simulator):
+			return true
+		case (.iPhone(let left), iPhone(let right)):
+			return left == right
+		case (.iPad(let left), iPad(let right)):
+			return left == right
+		case (.iPod(let left), iPod(let right)):
+			return left == right
+		case (.watch(let left), watch(let right)):
+			return left == right
+		case (.appleTV(let left), appleTV(let right)):
+			return left == right
+		default:
+			return false
+		}
+	}
+}
+
 fileprivate extension RawRepresentable where RawValue: Comparable {
 
 	static func <(lessThan: Self, item: Self) -> Bool {
