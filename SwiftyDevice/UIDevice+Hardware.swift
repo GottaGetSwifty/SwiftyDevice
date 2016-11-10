@@ -65,7 +65,7 @@ extension UIDevice {
 		return attributes[FileAttributeKey.systemFreeSize] as? Float
 	}
 
-	private static func hardwareString() -> String {
+	fileprivate static func hardwareString() -> String {
 		var name: [Int32] = [CTL_HW, HW_MACHINE]
 		var size: Int = 2
 		sysctl(&name, 2, nil, &size, &name, 0)
@@ -76,7 +76,7 @@ extension UIDevice {
 		return hardware
 	}
 
-	private func systemInfo(for key: Int32) -> Int {
+	fileprivate static func systemInfo(for key: Int32) -> Int {
 		var name: [Int32] = [CTL_HW, key]
 		var size: Int = 2
 		sysctl(&name, 2, nil, &size, &name, 0)

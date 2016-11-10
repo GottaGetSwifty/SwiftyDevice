@@ -23,7 +23,7 @@
 /// - watch:: enum for iPhone line
 /// - appleTV:: enum for iPhone line
 /// - unknown: No valid device was found
-enum DeviceLine {
+public enum DeviceLine {
 
 	case unknown
 	case iPhone(IPhone)
@@ -83,7 +83,7 @@ enum DeviceLine {
 	///
 	/// - Parameter otherEnum: enum to compare with own instance
 	/// - Returns: whether the basic enum values match without comparing their stored types
-	func matchesEnumValue(otherEnum: DeviceLine) -> Bool {
+	fileprivate func matchesBasicLine(otherEnum: DeviceLine) -> Bool {
 		switch (self, otherEnum) {
 		case (.unknown, .unknown), (.iPhone(_), .iPhone(_)),
 		     (.iPad(_), .iPad(_)), (.iPod(_), .iPod(_)),
@@ -98,7 +98,7 @@ enum DeviceLine {
 	//MARK: - SubTypes
 
 	/// Should contain all basic models of iPhones
-	enum IPhone: String {
+	public enum IPhone: String {
 
 		case unknown = "Unknown iPhone"
 		case iPhone1 = "iPhone 1G"
@@ -119,7 +119,7 @@ enum DeviceLine {
 	}
 
 	/// Should contain all basic models of iPads
-	enum IPad: String {
+	public enum IPad: String {
 
 		case unknown = "Unknown iPad"
 		case iPad1 = "iPad 1"
@@ -137,7 +137,7 @@ enum DeviceLine {
 	}
 
 	/// Should contain all basic models of iPods
-	enum IPod: String {
+	public enum IPod: String {
 		case unknown = "Unknown iPod"
 		case iPod1 = "iPod 1G"
 		case iPod2 = "iPod 2G"
@@ -148,7 +148,7 @@ enum DeviceLine {
 	}
 
 	/// Should contain all basic models of Apple Watches
-	enum Watch: String {
+	public enum Watch: String {
 		case unknown = "Unknown Apple Watch"
 		case watch0_38 = "Apple Watch Series 0-38mm"
 		case watch0_42 = "Apple Watch Series 0-42mm"
@@ -159,7 +159,7 @@ enum DeviceLine {
 	}
 
 	/// Should contain all basic models of Apple TVs
-	enum AppleTV: String {
+	public enum AppleTV: String {
 		case unknown
 		case appleTV1G = "AppleTV 1"
 		case appleTV2G = "AppleTV 2"
