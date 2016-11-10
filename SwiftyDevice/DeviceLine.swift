@@ -15,7 +15,7 @@
 
 /// * The way this works is the enum DeviceLine's cases are each device family, (iPhone, iPad, etc.)
 /// * Each case has an associated value for the specific line in the family. (iPhone 5, iphone 6, etc.)
-///  * All these enums can create themselves based on a hardware string
+/// * All these enums can create themselves based on a hardware string from HardwareStringable
 ///
 /// - iPhone:: enum for iPhone line
 /// - iPad:: enum for iPhone line
@@ -83,17 +83,17 @@ public enum DeviceLine {
 	///
 	/// - Parameter otherEnum: enum to compare with own instance
 	/// - Returns: whether the basic enum values match without comparing their stored types
-	fileprivate func matchesBasicLine(otherEnum: DeviceLine) -> Bool {
-		switch (self, otherEnum) {
-		case (.unknown, .unknown), (.iPhone(_), .iPhone(_)),
-		     (.iPad(_), .iPad(_)), (.iPod(_), .iPod(_)),
-		     (.watch(_), .watch(_)), (.appleTV(_), .appleTV(_)),
-		     (.simulator, .simulator):
-			return true
-		default:
-			return false
-		}
-	}
+//	fileprivate func matchesBasicLine(otherEnum: DeviceLine) -> Bool {
+//		switch (self, otherEnum) {
+//		case (.unknown, .unknown), (.iPhone(_), .iPhone(_)),
+//		     (.iPad(_), .iPad(_)), (.iPod(_), .iPod(_)),
+//		     (.watch(_), .watch(_)), (.appleTV(_), .appleTV(_)),
+//		     (.simulator, .simulator):
+//			return true
+//		default:
+//			return false
+//		}
+//	}
 
 	//MARK: - SubTypes
 

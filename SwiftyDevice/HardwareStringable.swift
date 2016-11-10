@@ -5,7 +5,14 @@
 //  Created by Paul Fechner on 11/10/16.
 //  Copyright © 2016 PeeJWeeJ. All rights reserved.
 //
+// I've tried a few different ways of organizing the parsing of the device HWString and this is what I settled on.
+// Although i
+//
+// This file includes extensions for all the Device enums from DeviceLine that adhere to HardwareStringable
+// The general behavior is the types will be passed a hwString and return the related device, or .unknown
 
+
+/// adherance means the type can be created from the hwString from UIDevice
 protocol HardwareStringable: Equatable {
 	static func make(from hwString: String) -> Self
 	static func makeOrNil(from hwString: String) -> Self?
@@ -240,7 +247,7 @@ extension DeviceLine: HardwareStringable {
 }
 
 extension DeviceLine: Equatable {
-	static func ==(leftItem: DeviceLine, rightItem: DeviceLine) -> Bool {
+	public static func ==(leftItem: DeviceLine, rightItem: DeviceLine) -> Bool {
 		switch (leftItem, rightItem) {
 		case (.unknown, .unknown), (.simulator, simulator):
 			return true
@@ -260,6 +267,8 @@ extension DeviceLine: Equatable {
 	}
 }
 
+/// This allows RawRepresentable types (enums are what's important here) to adhere to Comparable without having to re-implement any methods.
+/// fileprivate because it could clash with other extensions or create undesired effects.
 fileprivate extension RawRepresentable where RawValue: Comparable {
 
 	static func <(lessThan: Self, item: Self) -> Bool {
@@ -269,5 +278,4 @@ fileprivate extension RawRepresentable where RawValue: Comparable {
 	static func ==(leftItem: Self, rightItem: Self) -> Bool {
 		return leftItem.rawValue == rightItem.rawValue
 	}
-	
 }

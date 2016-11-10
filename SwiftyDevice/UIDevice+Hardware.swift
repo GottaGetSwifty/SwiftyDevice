@@ -24,7 +24,12 @@ extension UIDevice {
 		return UIScreen.main.scale == 2.0
 	}
 	public static var isIPod: Bool {
-		return DeviceLine.make(from: machineInfoName).matchesEnumValue(otherEnum: .iPod(.unknown))
+		switch deviceLine {
+		case .iPod(_):
+			return true
+		default:
+			return false
+		}
 	}
 
 	public static var machineInfoName: String {
