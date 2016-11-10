@@ -15,6 +15,8 @@
 		9212BF471D89B28900A9E94A /* SwiftyDeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9212BF461D89B28900A9E94A /* SwiftyDeviceTests.swift */; };
 		9212BF521D89B28900A9E94A /* SwiftyDeviceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9212BF511D89B28900A9E94A /* SwiftyDeviceUITests.swift */; };
 		9212BF611D89B2B800A9E94A /* UIDevice+Hardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9212BF601D89B2B800A9E94A /* UIDevice+Hardware.swift */; };
+		92BF51E71DD535CC004273DF /* HardwareStringable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BF51E61DD535CC004273DF /* HardwareStringable.swift */; };
+		92BF51E91DD535F8004273DF /* DeviceLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BF51E81DD535F8004273DF /* DeviceLine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		9212BF531D89B28900A9E94A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9212BF601D89B2B800A9E94A /* UIDevice+Hardware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Hardware.swift"; sourceTree = "<group>"; };
 		9212BF621D89DF0100A9E94A /* SwiftyDevice-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftyDevice-Bridging-Header.h"; sourceTree = "<group>"; };
+		92BF51E61DD535CC004273DF /* HardwareStringable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HardwareStringable.swift; sourceTree = "<group>"; };
+		92BF51E81DD535F8004273DF /* DeviceLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceLine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,8 +136,10 @@
 		9212BF5F1D89B2A400A9E94A /* UIDevice */ = {
 			isa = PBXGroup;
 			children = (
-				9212BF601D89B2B800A9E94A /* UIDevice+Hardware.swift */,
 				9212BF621D89DF0100A9E94A /* SwiftyDevice-Bridging-Header.h */,
+				9212BF601D89B2B800A9E94A /* UIDevice+Hardware.swift */,
+				92BF51E81DD535F8004273DF /* DeviceLine.swift */,
+				92BF51E61DD535CC004273DF /* HardwareStringable.swift */,
 			);
 			name = UIDevice;
 			sourceTree = "<group>";
@@ -276,7 +282,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92BF51E71DD535CC004273DF /* HardwareStringable.swift in Sources */,
 				9212BF341D89B28900A9E94A /* ViewController.swift in Sources */,
+				92BF51E91DD535F8004273DF /* DeviceLine.swift in Sources */,
 				9212BF321D89B28900A9E94A /* AppDelegate.swift in Sources */,
 				9212BF611D89B2B800A9E94A /* UIDevice+Hardware.swift in Sources */,
 			);
