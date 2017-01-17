@@ -4,7 +4,8 @@
 //
 //  Created by Paul Fechner on 11/10/16.
 //  Copyright © 2016 PeeJWeeJ. All rights reserved.
-//
+
+
 // I've tried a few different ways of organizing the parsing of the device HWString and this is what I settled on.
 // Although the long switches can get a tad ugly, it seems to be the best way to keep things organized and maintainable.
 //
